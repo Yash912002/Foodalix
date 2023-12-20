@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
@@ -11,12 +10,9 @@ const RestaurantMenu = () => {
 	if (resInfo === null) return <Shimmer />;
 
 	// const { name, cuisines, costForTwoMessage } = resInfo.cards[2].card.card.info;
-	// const { itemCards } =	resInfo.cards[9].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
+	// const { itemCards } = resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
 
-	// const { name, cuisines, costForTwoMessage } = resInfo.cards[0].card.card.info;
-	const { itemCards } = resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
-
-	// console.log(resInfo);
+	// console.log(itemCards);
 
 	let menu;
 	for (let i = 0; i < resInfo.cards.length; i++) {
@@ -36,7 +32,7 @@ const RestaurantMenu = () => {
 				Cuisines :- {menu.cuisines.join(", ")} --- {menu.costForTwoMessage}
 			</p>
 			<h3>Menu</h3>
-			<ol>
+			{/* <ol>
 				{itemCards.map((item) => {
 					// defaultPrice
 					return (
@@ -49,7 +45,7 @@ const RestaurantMenu = () => {
 						</li>
 					);
 				})}
-			</ol>
+			</ol> */}
 		</div>
 	);
 };

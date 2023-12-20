@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import ResCard from "./Rescard";
+import ResCard, { PromotedLabel } from "./Rescard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
 	const [Res, setRes] = useState([]);
 	const [filterRes, setFilterRes] = useState([]);
 	const [searchText, setSearchText] = useState("");
+
+	// We are passing list of restaurants to promotedLabel which will
+	// add the promoted restaurants in "PromotedRestaurants"
+	const PromotedRestaurants = PromotedLabel(ResCard);
+
+	// console.log("List of restaurants = ", Res);
 
 	useEffect(() => {
 		fetchData();
@@ -20,30 +27,24 @@ const Body = () => {
 		// console.log(jsonData);
 
 		// Optional chaining
-		// const RestaurantData =
-		// 	// jsonData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-		// 	// 	?.restaurants;
-		// 	jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-		// 		?.restaurants;
+		// const RestaurantData = jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
 		let RestaurantData;
 
 		for (let i = 0; i < jsonData?.data?.cards.length; i++) {
 			const card = jsonData?.data?.cards[i];
-
 			// Check if the sequence exists in the current card
 			if (
 				card?.card?.card?.gridElements?.infoWithStyle?.restaurants !== undefined
 			) {
 				// If the sequence is found, assign the data and break the loop
-				RestaurantData = card.card.card.gridElements.infoWithStyle.restaurants;
+				RestaurantData = card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 				break;
 			}
 		}
-
 		setRes(RestaurantData);
 		setFilterRes(RestaurantData);
-		// console.log(RestaurantData);
+		console.log(RestaurantData);
 	};
 
 	// Conditional rendering
@@ -92,16 +93,26 @@ const Body = () => {
 					>
 						Top Rated Restaurants
 					</button>
-
 				</div>
 
 				{/* Restaurant Card and Info */}
+				{/* If the restaurant is promoted then add the "Promoted" label to
+					it by using ( Higher Order Components )  */}
 				<div className="flex flex-wrap justify-evenly">
 					{filterRes.map((restaurant) => (
-						<ResCard resData={restaurant} key={restaurant.info.id} />
+						<Link 
+							to={"/restaurants/" + restaurant.info.id}
+							key={restaurant.info.id}
+						>
+							{console.log("Hello",restaurant.info.id)}
+							{restaurant.info.promoted ? (
+								<PromotedRestaurants resData={restaurant} />
+							) : (
+								<ResCard resData={restaurant} key={restaurant.info.id} />
+							)}
+						</Link>
 					))}
 				</div>
-				
 			</div>
 		</>
 	);
