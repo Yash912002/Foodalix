@@ -104,7 +104,7 @@ const Body = () => {
 							to={"/restaurants/" + restaurant.info.id}
 							key={restaurant.info.id}
 						>
-							{console.log("Hello",restaurant.info.id)}
+							{/* {console.log("Hello",restaurant.info.id)} */}
 							{restaurant.info.promoted ? (
 								<PromotedRestaurants resData={restaurant} />
 							) : (
