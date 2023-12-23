@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
+	const dummy = "Dummy Data";
 	const { resId } = useParams();
 	// console.log(resId);
 	const resInfo = useRestaurantMenu(resId);
@@ -48,6 +49,7 @@ const RestaurantMenu = () => {
 				<RestaurantCategory
 					key={category?.card?.card?.title}
 					data={category?.card?.card}
+					dummy={dummy}
 				/>
 			))}
 		</div>

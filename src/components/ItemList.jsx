@@ -1,6 +1,6 @@
 import { CDN_URL } from "../Utils/constants";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, dummy }) => {
 	// console.log(items);
 	return (
 		<div>
@@ -10,6 +10,7 @@ const ItemList = ({ items }) => {
 					className="p-0 m-2 border-b-2 border-gray-500 text-left flex justify-between"
 				>
 					<div className="ml-2 w-9/12">
+						{/* <div>{dummy}</div> */}
 						<div className="flex flex-col">
 							{/* Name of the dish  */}
 							<span className="font-semibold text-blue-800 mt-2">
@@ -36,7 +37,7 @@ const ItemList = ({ items }) => {
 						<img
 							className="w-[100px] h-[100px] rounded-lg m-2"
 							src={CDN_URL + item.card.info.imageId}
-							alt="Random shit"
+							alt="Food Image"
 						/>
 					</div>
 				</div>

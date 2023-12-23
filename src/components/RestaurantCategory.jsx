@@ -3,7 +3,7 @@ import ItemList from "./ItemList";
 import DownArrow from "../Images/chevron-down-solid.svg";
 import UpArrow from "../Images/chevron-up-solid.svg";
 
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data, dummy }) => {
 	// State to manage the visibility of Accordion body
 	const [isVisible, setIsVisible] = useState(true);
 	// State to manage the arrow direction
@@ -31,7 +31,11 @@ const RestaurantCategory = ({ data }) => {
 
 				{/* Accordion Body */}
 				{/* Show ItemList if isVisible is true, else hide */}
-				{isVisible ? <ItemList items={data.itemCards} /> : isVisible}
+				{isVisible ? (
+					<ItemList items={data.itemCards} dummy={dummy} />
+				) : (
+					isVisible
+				)}
 			</div>
 		</div>
 	);
