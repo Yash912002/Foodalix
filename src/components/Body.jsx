@@ -51,7 +51,6 @@ const Body = () => {
 		}
 		setRes(RestaurantData);
 		setFilterRes(RestaurantData);
-		console.log(RestaurantData);
 	};
 
 	// Conditional rendering

@@ -1,16 +1,25 @@
+import { addItem } from "../Utils/cartSlice";
 import { CDN_URL } from "../Utils/constants";
+import { useDispatch } from "react-redux";
 
-const ItemList = ({ items, dummy }) => {
+const ItemList = ({ items }) => {
 	// console.log(items);
+
+	const dispatch = useDispatch();
+
+	const handleAddItem = (item) => {
+		// Dispatch an action
+		dispatch(addItem(item));
+	};
+
 	return (
 		<div>
 			{items.map((item) => (
 				<div
 					key={item.card.info.id}
-					className="p-0 m-2 border-b-2 border-gray-500 text-left flex justify-between"
+					className="p-0 m-2 border-b-2 border-gray-200 text-left flex justify-between"
 				>
 					<div className="ml-2 w-9/12">
-						{/* <div>{dummy}</div> */}
 						<div className="flex flex-col">
 							{/* Name of the dish  */}
 							<span className="font-semibold text-blue-800 mt-2">
@@ -31,7 +40,10 @@ const ItemList = ({ items, dummy }) => {
 					</div>
 
 					<div>
-						<button className="absolute bg-green-500 text-white p-1 ml-9 rounded-md shadow-lg hover:bg-green-600">
+						<button
+							className="absolute bg-green-500 text-white p-1 ml-9 rounded-md shadow-lg hover:bg-green-600"
+							onClick={() => handleAddItem(item)}
+						>
 							Add+
 						</button>
 						<img

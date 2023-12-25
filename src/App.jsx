@@ -9,9 +9,12 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import UserInfo from "./Utils/userContext";
 import "./App.css";
+import { Provider } from "react-redux";
+import appStore from "./Utils/appStore";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
+const Cart = lazy(() => import("./components/Cart"));
 
 const App = () => {
 	const [name, setName] = useState();
@@ -24,12 +27,14 @@ const App = () => {
 	}, []);
 
 	return (
-		<UserInfo.Provider value={{ loggedInUser: name , setName}}>
-			<div className="App">
-				<Header />
-				<Outlet />
-			</div>
-		</UserInfo.Provider>
+		<Provider store={appStore}>
+			<UserInfo.Provider value={{ loggedInUser: name, setName }}>
+				<div className="App">
+					<Header />
+					<Outlet />
+				</div>
+			</UserInfo.Provider>
+		</Provider>
 	);
 };
 
@@ -62,6 +67,15 @@ const Approuter = createBrowserRouter([
 				element: (
 					<Suspense fallback={<Shimmer />}>
 						<Grocery />
+					</Suspense>
+				),
+			},
+
+			{
+				path: "/cart",
+				element: (
+					<Suspense fallback={<Shimmer />}>
+						<Cart />
 					</Suspense>
 				),
 			},
