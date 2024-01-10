@@ -4,9 +4,7 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
-	const dummy = "Dummy Data";
 	const { resId } = useParams();
-	// console.log(resId);
 	const resInfo = useRestaurantMenu(resId);
 
 	if (resInfo === null) return <Shimmer />;
@@ -23,7 +21,6 @@ const RestaurantMenu = () => {
 				c.card?.card?.["@type"] ===
 				"type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
 		);
-	// console.log(categories);
 
 	let menu;
 	for (let i = 0; i < resInfo.cards.length; i++) {
@@ -34,7 +31,6 @@ const RestaurantMenu = () => {
 			break;
 		}
 	}
-	// console.log(menu);
 
 	return (
 		<div className="text-center">
@@ -49,7 +45,6 @@ const RestaurantMenu = () => {
 				<RestaurantCategory
 					key={category?.card?.card?.title}
 					data={category?.card?.card}
-					dummy={dummy}
 				/>
 			))}
 		</div>

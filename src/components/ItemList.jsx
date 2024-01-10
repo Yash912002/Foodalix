@@ -3,7 +3,6 @@ import { CDN_URL } from "../Utils/constants";
 import { useDispatch } from "react-redux";
 
 const ItemList = ({ items }) => {
-	// console.log(items);
 
 	const dispatch = useDispatch();
 

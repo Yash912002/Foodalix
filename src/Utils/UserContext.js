@@ -1,7 +1,7 @@
-import { createContext} from "react";
+// import { createContext} from "react";
 
-const UserInfo = createContext({
-	loggedInUser: "Random User",
-});
+// const UserInfo = createContext({
+// 	loggedInUser: "Random User",
+// });
 
-export default UserInfo;
+// export default UserInfo;

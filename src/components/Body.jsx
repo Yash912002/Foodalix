@@ -2,27 +2,20 @@ import { useContext, useEffect, useState } from "react";
 import ResCard, { PromotedLabel } from "./Rescard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import UserInfo from "../Utils/userContext";
 
 const Body = () => {
 	const [Res, setRes] = useState([]);
 	const [filterRes, setFilterRes] = useState([]);
 	const [searchText, setSearchText] = useState("");
-	const {loggedInUser, setName} = useContext(UserInfo)
 
 	// We are passing list of restaurants to promotedLabel which will
 	// add the promoted restaurants in "PromotedRestaurants"
 	const PromotedRestaurants = PromotedLabel(ResCard);
 
-	// console.log("List of restaurants = ", Res);
 
 	useEffect(() => {
 		fetchData();
 	}, []);
-
-	function changeUser(e) {
-		setName(e.target.value);
-	}
 
 	const fetchData = async () => {
 		const data = await fetch(
@@ -30,7 +23,6 @@ const Body = () => {
 		);
 
 		const jsonData = await data.json();
-		// console.log(jsonData);
 
 		// Optional chaining
 		// const RestaurantData = jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -99,16 +91,6 @@ const Body = () => {
 					>
 						Top Rated Restaurants
 					</button>
-
-					<div>
-						<label htmlFor=""> User Name </label>
-						<input
-							type="text"
-							className="border border-black"
-							value={loggedInUser}
-							onChange={changeUser}
-						/>
-					</div>
 				</div>
 
 				{/* Restaurant Card and Info */}
@@ -120,7 +102,6 @@ const Body = () => {
 							to={"/restaurants/" + restaurant.info.id}
 							key={restaurant.info.id}
 						>
-							{/* {console.log("Hello",restaurant.info.id)} */}
 							{restaurant.info.promoted ? (
 								<PromotedRestaurants resData={restaurant} />
 							) : (

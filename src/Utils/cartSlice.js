@@ -9,7 +9,7 @@ const cartSlice = createSlice({
 	reducers: {
 		// action: reducer() associated with it
 		addItem: (state, action) => {
-      // Mutating the 0riginal state here
+			// Mutating the 0riginal state here
 			state.items.push(action.payload); // Here state is initial state which is a object
 		},
 		removeItem: (state, action) => {
@@ -19,6 +19,12 @@ const cartSlice = createSlice({
 			state.items.length = 0;
 			// Alternate way
 			// return { items: [] };
+
+			/*! 
+				state = []
+				state is local variable It will make changes locally,
+				it will not modify the actual state 
+			*/
 		},
 	},
 });

@@ -1,10 +1,8 @@
 import { CDN_URL } from "../Utils/constants";
-import {useContext} from 'react';
-import UserInfo from "../Utils/userContext";
+// import {useContext} from 'react';
 
 
 const ResCard = (props) => {
-	const {loggedInUser} = useContext(UserInfo)
 	const { resData } = props;
 
 	// Optional chaining
@@ -29,7 +27,6 @@ const ResCard = (props) => {
 				</button>
 				<h3 className="text-green-700 font-bold"> {avgRating} stars</h3>
 				<h4 className="mb-4"> {cuisines.join(", ")}</h4>
-				<h1 className="font-bold">{loggedInUser}</h1>
 			</div>
 		</div>
 	);
