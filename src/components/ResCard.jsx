@@ -1,6 +1,4 @@
 import { CDN_URL } from "../Utils/constants";
-// import {useContext} from 'react';
-
 
 const ResCard = (props) => {
 	const { resData } = props;
@@ -30,28 +28,6 @@ const ResCard = (props) => {
 			</div>
 		</div>
 	);
-};
-
-/* Creating a Higher Order Component */
-// Input => ResCard
-// output => ResCard with promoted label
-
-// PromotedLabel is a fucntion which will take Rescard as input &
-// return component (rescard with promoted label) &
-// a component returns a piece of JSX
-
-export const PromotedLabel = (ResCard) => {
-	return (props) => {
-		return (
-			<div>
-				<label className="absolute bg-blue-500 text-white p-2 ml-4 rounded-lg">
-					{" "}
-					Promoted{" "}
-				</label>
-				<ResCard {...props} />
-			</div>
-		);
-	};
 };
 
 export default ResCard;

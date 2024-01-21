@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import ResCard, { PromotedLabel } from "./Rescard";
+import { useEffect, useState } from "react";
+import ResCard from "./Rescard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
@@ -7,11 +7,6 @@ const Body = () => {
 	const [Res, setRes] = useState([]);
 	const [filterRes, setFilterRes] = useState([]);
 	const [searchText, setSearchText] = useState("");
-
-	// We are passing list of restaurants to promotedLabel which will
-	// add the promoted restaurants in "PromotedRestaurants"
-	const PromotedRestaurants = PromotedLabel(ResCard);
-
 
 	useEffect(() => {
 		fetchData();
@@ -94,19 +89,13 @@ const Body = () => {
 				</div>
 
 				{/* Restaurant Card and Info */}
-				{/* If the restaurant is promoted then add the "Promoted" label to
-					it by using ( Higher Order Components )  */}
 				<div className="flex flex-wrap justify-evenly">
 					{filterRes.map((restaurant) => (
 						<Link
 							to={"/restaurants/" + restaurant.info.id}
 							key={restaurant.info.id}
 						>
-							{restaurant.info.promoted ? (
-								<PromotedRestaurants resData={restaurant} />
-							) : (
-								<ResCard resData={restaurant} key={restaurant.info.id} />
-							)}
+							<ResCard resData={restaurant} key={restaurant.info.id} />
 						</Link>
 					))}
 				</div>
