@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ResCard from "./Rescard";
+import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
